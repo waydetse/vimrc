@@ -3,7 +3,7 @@
 "                               Author: Wayde Tse
 "                                Email: waydetse@gmail.com
 "                              Website: http://waydetse.github.com
-"                        Last Modified: 2012-08-31 06:40:38
+"                        Last Modified: 2012-08-31 21:07:54
 "
 " +----------------------------------------------------------------------------+
 
@@ -52,13 +52,20 @@ set listchars=tab:>\ ,
 
 set autoread
 
+"indent
+nmap <Tab> v>
+nmap <S-Tab> v<
+vmap <Tab> >gv
+vmap <S-Tab> <gv
+
 "utf-8 nobomb
-noremap <C-S> <Esc>:set fenc=utf-8<CR>:set nobomb<CR>:w<CR>
-noremap! <C-S> <Esc>:set fenc=utf-8<CR>:set nobomb<CR>:w<CR>
+map <C-S> <Esc>:set fenc=utf-8<CR>:set nobomb<CR>:w<CR>
+map! <C-S> <Esc>:set fenc=utf-8<CR>:set nobomb<CR>:w<CR>
 
 "modified time
-autocmd BufWritePre,FileWritePre *.{txt,html,css,js},*vimrc call LastModified()
+autocmd BufWritePre,FileWritePre *.{txt,html,md,css,js},*vimrc
+\ call LastModified()
 function LastModified()
     execute "g/Last [Mm]odified:/s/Last [Mm]odified:.*/Last Modified".
-        \ strftime(": %Y-%m-%d %H:%M:%S")
+    \ strftime(": %Y-%m-%d %H:%M:%S")
 endfunction
